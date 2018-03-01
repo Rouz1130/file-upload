@@ -1,45 +1,23 @@
-<div class="jumbotron">
-    <h1>Upload CSV</h1>
-    <p>This is an application where we can upload CSV files (5 maximum) and show the data in the CSV file.</p>
-    <p>
-        <file-upload (uploaded)="uploaded($event)"></file-upload>
-        
-    </p>
-    <span *ngIf="uploadedCount > 0">Uploaded files: {{uploadedCount}} 
-  </div>
-  <br />
-  <br/>
-  <div class="row">
-      <div class="col-md-12">
-          <form class="form-inline" *ngIf="filesData && filesData.length > 0">
-              <div class="form-group">
-                  <label for="email">Uploaded Files: </label>
-                  <select class="form-control" #files (change)="onFileChange(files.value)">
-                      <option *ngFor="let fd of filesData;let i = index" value="{{i}}">{{fd.name}}</option>
-                  </select>
-                </div>	
-          </form>
-          <h3 *ngIf="!filesData || filesData.length < 1">
-              Please upload file first.
-          </h3>
-      </div>
-  </div>
+<!-- <div class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" routerLink="/home">CSV File Reader</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li routerLinkActive="active"><a routerLink="/home">Upload CSV</a></li>
+        <li routerLinkActive="active"><a routerLink="/home">Show Data</a></li>
+      </ul> -->
+    <!-- </div>/.nav-collapse -->
+  <!-- </div>/.container-fluid -->
+<!-- </nav> -->
   
-  <div class="row data-container" *ngIf="filesData && filesData.length > 0">
-      <div class="col-md-12">
-          <div class="table-responsive">
-              <table class="table table-bordered">
-                  <thead>
-                      <tr>
-                          <th *ngFor="let h of selected.headers">{{h}}</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      <tr *ngFor="let d of selected.data">
-                          <td *ngFor="let h of selected.headers">{{d[h]}}</td>
-                      </tr>
-                  </tbody>
-              </table>
-          </div>
-      </div>
-  </div>
+<div class="container">
+	<!-- <router-outlet></router-outlet> --><app-home></app-home>
+</div>

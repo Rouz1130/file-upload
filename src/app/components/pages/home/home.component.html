@@ -3,11 +3,11 @@
 	<p>
 		<file-upload (uploaded)="uploaded($event)"></file-upload>
   </p>
-	<span *ngIf="uploadedCount > 0">Uploaded files: {{uploadedCount}} <a routerLink="/show-data">Show Data</a></span>
+	<span *ngIf="uploadedCount > 0">Uploaded files: {{uploadedCount}}</span>
   </div>
   <br />
   <br/>
-  <div class="row">
+  <!-- <div class="row">
 	  <div class="col-md-12">
 		  <form class="form-inline" *ngIf="filesData && filesData.length > 0">
 			  <div class="form-group">
@@ -20,5 +20,40 @@
 		  <h3 *ngIf="!filesData || filesData.length < 1">
 		  </h3>
 	  </div>
-  </div>
+	</div> -->
+	<br/>
+	<!-- <app-show-data></app-show-data> -->
+	
   
+	<div class="row">
+		<div class="col-md-12">
+			<form class="form-inline" *ngIf="filesData && filesData.length > 0">
+				<div class="form-group">
+					<label for="email">Uploaded Files: </label>
+						<select class="form-control" #files (change)="onFileChange(files.value)">
+						<option *ngFor="let fd of filesData;let i = index" value="{{i}}">{{fd.name}}</option>
+					</select>
+					</div>	
+			</form>
+			<h3 *ngIf="!filesData || filesData.length < 1"></h3>
+		</div>
+	</div>
+	
+	<div class="row data-container" *ngIf="filesData && filesData.length > 0">
+		<div class="col-md-12">
+			<div class="table-responsive">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th *ngFor="let h of selected.headers">{{h}}</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let d of selected.data">
+							<td *ngFor="let h of selected.headers">{{d[h]}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>

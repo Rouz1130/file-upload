@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { ShowDataComponent } from '../../pages/show-data/show-data.component';
 
 import { DataService } from '../../../services/data/data.service';
 
@@ -8,6 +9,7 @@ import { DataService } from '../../../services/data/data.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+ 
   filesData = [];
   selected;
   uploadedCount:number;

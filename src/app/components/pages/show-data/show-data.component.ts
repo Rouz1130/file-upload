@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
 import { DataService } from '../../../services/data/data.service';
 
@@ -8,6 +8,7 @@ import { DataService } from '../../../services/data/data.service';
   styleUrls: ['./show-data.component.css']
 })
 export class ShowDataComponent implements OnInit {
+  @Output() uploaded = new EventEmitter<any>();
   filesData = [];
   selected;
   constructor(private dataService: DataService) { }
