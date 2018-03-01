@@ -36,4 +36,3 @@ export class FileUploadComponent implements OnInit {
   }
 }
 
-
