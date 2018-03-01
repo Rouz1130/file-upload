@@ -25,8 +25,11 @@ export class HomeComponent implements OnInit {
       this.uploadedCount = this.dataService.filesData.length; 
   }
   onFileChange(val:number) {
+
     this.selected = this.filesData[val];
  }
 
-
 }
+
+
+
