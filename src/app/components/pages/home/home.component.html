@@ -13,7 +13,7 @@
 			<form class="form-inline" *ngIf="filesData && filesData.length > 0">
 				<div class="form-group">
 					<label for="email">Uploaded Files: </label>
-						<select class="form-control" #files (change)="onFileChange(files.value)">
+						<select class="form-control" #files (click)="onFileChange(files.value)">
 						<option button *ngFor="let fd of filesData;let i = index" value="{{i}}">{{fd.name}}</option>
 					</select>
 
