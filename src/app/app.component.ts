@@ -1,32 +1,38 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import * as D3 from 'd3/Index';
+import { Node, Link } from './d3';
 import { CSVtoJSON } from './csv-to-json';
+import APP_CONFIG from './app.config';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
-  errorMessage: string;
-  host;
-  svg;
+export class AppComponent {
+  nodes: Node[] = [];
+  links: Link[] = [];
+
     
-  constructor(private _element: ElementRef) {
-    this.host = D3.select(this._element.nativeElement);
-  }
-
-  ngOnInit() {
-    this.buildSVG();
-  }
-
-  buildSVG() {
-    this.host.html('');
-    this.svg = this.host.append('svg')
-      .attr('width', '600')
-      .attr('height', '400')
-      .style('background-color', 'blue');
-  }
+  constructor() {
+    const N = APP_CONFIG.N,
+          getIndex = number => number - 1;
 
 
-}
+          for (let i = 1; i <= N; i++) {
+            this.nodes.push(new Node(i));
+          }
+      
+
+          for (let i = 1; i <= N; i++) {
+            for (let m = 2; i * m <= N; m++) {
+              /** increasing connections toll on connecting nodes */
+              this.nodes[getIndex(i)].linkCount++;
+              this.nodes[getIndex(i * m)].linkCount++;
+      
+              /** connecting the nodes before starting the simulation */
+              this.links.push(new Link(i, i * m));
+            }
+          }
+        }
+      }

@@ -2,39 +2,45 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-// import { RouterModule, Routes } from '@angular/router';
+
 
 import { AppComponent } from './app.component';
 
 import { CSVtoJSON } from './csv-to-json';
 import { DataService } from './services/data/data.service';
+import { D3Service, D3_DIRECTIVES } from './d3';
 
+//Components
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import { ShowDataComponent } from './components/pages/show-data/show-data.component';
 
+import { GraphComponent } from '././visuals/graph/graph.component';
+import { SHARED_VISUALS } from '././visuals/shared';
 
-// const appRoutes: Routes = [
-//   {path: '',   redirectTo: '/home', pathMatch: 'full'},
-//   { path: 'home', component: HomeComponent },
-//   { path: 'home', component: HomeComponent },
-// ];
+
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     FileUploadComponent,
     HomeComponent,
-    ShowDataComponent
+    ShowDataComponent,
+    GraphComponent,
+    ...SHARED_VISUALS,
+    ...D3_DIRECTIVES
+
     
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    // RouterModule.forRoot(appRoutes)
+  
   ],
-  providers: [CSVtoJSON, DataService],
+  providers: [CSVtoJSON, DataService, D3Service],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
